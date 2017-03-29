@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+<h:body>
+    <p></p>
+    <h1>Biom : ${biom.title}</h1>
+    <h3>Sektoren: ${biom.sectors.size()}</h3>
+
+    <h:form id="form" target="_blank">
+        <p:ring id="sectors_ring" value="${biom.sectors}" var="sector">
+            <p:outputPanel style="text-align: center;" layout="block">
+                Sektor ${sector.id}
+                <br />
+                <p:commandButton update=":form:sectorDetail" icon="ui-icon-search"  oncomplete="PF('sectorDialog').show();" >
+                    <f:setPropertyActionListener value="${sector}" target="${biom.selectedSector}" />
+                </p:commandButton>
+            </p:outputPanel>
+        </p:ring>
+
+
+
+
+        <p:dialog header="Sector Info" id="sectorDialogId" widgetVar="sectorDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false" width="170">
+            <p:outputPanel id="sectorDetail" style="text-align:center;" layout="block">
+                <p:panelGrid columns="2" rendered="${not empty biom.selectedSector}" columnClasses="value" >
+
+                    <h:outputText value="Id:" />
+                    <h:outputText value="${biom.selectedSector.id}" />
+
+                </p:panelGrid>
+            </p:outputPanel>
+        </p:dialog>
+    </h:form>
+
+</h:body>
+</html>

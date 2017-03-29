@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+
+<ui:composition template="/templates/maintemplate.xhtml">
+
+    <ui:define name="title">${team} players:</ui:define>
+
+    <ui:define name="content">
+        <h1>Sektor ${sector.id}</h1>
+
+        <h3>Lager</h3>
+        <ul>
+            <ui:repeat var="nestedResource" value="${sector.storedResources}">
+                <li>${nestedResource.resourceType.name} ( ${nestedResource.amount} )</li>
+            </ui:repeat>
+        </ul>
+
+        <h3>Resourcen</h3>
+        <ul>
+            <ui:repeat var="nestedResource" value="${sector.naturalResources}">
+                <li>${nestedResource.resourceType.name} ( ${nestedResource.amount} )</li>
+            </ui:repeat>
+        </ul>
+
+        <h3>Gebäude</h3>
+        <ul>
+            <ui:repeat var="module" value="${sector.modules}">
+                <li >Modul ${module.id}:
+                    <span style="visibility: ${module.hasBuilding() ? 'visible' : 'hidden'} ">${module.buildingName } ( ${module.buildingLevel} )</span>
+                </li>
+            </ui:repeat>
+        </ul>
+    </ui:define>
+</ui:composition>
+</html>

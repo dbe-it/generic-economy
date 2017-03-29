@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+    <link rel="stylesheet" href="/templates/style.css"/>
+    <title><ui:insert name="title">Default title</ui:insert></title>
+</h:head>
+
+<h:body>
+    <header>
+        <hgroup>
+            <h1>Generic Economy</h1>
+            <h2>A simple demo website</h2>
+        </hgroup>
+         <nav>
+            <ul>
+                <li>Geld:${biom.userAccount.moneyBalance}</li>
+                <li><a href="/biom">Home</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <article>
+        <ui:insert name="content"/>
+    </article>
+
+    <ui:insert name="sidebar">
+        <section>
+            <h1>Biome:</h1>
+            <ul>
+                <ui:repeat var="biom" value="${bioms}">
+                    <li><a href="/biom/${biom.id}">${biom.title}</a></li>
+                </ui:repeat>
+            </ul>
+        </section>
+    </ui:insert>
+    <ui:insert name="footer">
+        <footer>
+            <p>Runde beenden</p>
+        </footer>
+    </ui:insert>
+</h:body>
+</html>
